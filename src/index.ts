@@ -1,16 +1,12 @@
 import { randomUUID } from "crypto";
 import {
-  DiskDatabase,
   MongoDatabase,
-  RedisDatabase,
 } from "./persistentDatabase";
 import { port } from "./config";
 import isEqual from "lodash.isequal";
 
 const persistentDatabases = [
-  new DiskDatabase(),
   new MongoDatabase(),
-  new RedisDatabase(),
 ] as const;
 
 await Promise.all(persistentDatabases.map((database) => database.connect()));
